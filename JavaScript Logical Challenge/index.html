@@ -1,0 +1,231 @@
+<html>
+
+<head>
+    <title>Power Platform Implementation Ex1</title>
+    <link rel="stylesheet" href="./css/stylesheet.css">
+    <!-- <script src="js/main1.js" defer></script>
+        <script src="js/main2.js" defer></script>
+        <script src="js/main3.js" defer></script>
+        <script src="js/main4.js" defer></script>
+ -->
+
+</head>
+
+<body>
+    <h1>Power Platform Implementation Problem Solving Questions</h1>
+
+    <div class="section">
+        <h3 class="que-title">Adventure Game Decision Making</h3>
+        <p class="que">You are writing text-based adventure game. The player encounters a locked door with a numeric
+            keypad. They must enter the correct code to proceed. However, the code changes based on the room they
+            entered previously</p>
+        <ul>
+            <li>If they were in the "Library" then the code is 2468</li>
+            <li>If they were in the "Dungeon" then the code is 7531</li>
+            <li>If they were in any other room, then the code is 0000</li>
+        </ul>
+
+        <p class="que">Write Power Platform Implementation that prompts the player to enter the code and informs them if
+            they can proceed or not</p>
+        <hr>
+
+        <p class="field-label">Enter Room Type</p>
+        <input class="roomtype" type="text" />
+
+        <p class="field-label">Enter Code</p>
+        <input class="code" type="text" />
+
+        <div>
+            <button onclick="proceed_in_room()" class="btn">Enter the room</button>
+        </div>
+        <p id="ans" style="color: green; font-size: larger;"></p>
+    </div>
+
+    <div class="section">
+        <h3 class="que-title">Restaurant Bill Splitter</h3>
+        <p class="que">A group of friends went to a restaurant. Write Power Platform Implementation program to calculate
+            each person's share of the bill, including tax and tip, based on the following conditions</p>
+        <ul>
+            <li>The tax rate is 8%</li>
+            <li>
+                The tip percentage varies:
+                <ul>
+                    <li>If the total bill including tax is less than $50, then the tip is 15%</li>
+                    <li>If the total bill is between %50 & $100 (inclusive), the tip is 20%</li>
+                    <li>If the total bill is more than $100, the tip is 25%</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr>
+        <p class="field-label">Enter Restaurant Bill</p>
+        <input id="bill_input" type="text" />
+
+        <p class="field-label">Enter Total persons</p>
+        <input id="persons_input" type="text" />
+
+        <div>
+            <button onclick="splitBill()" class="btn">Split Bill Amount</button>
+        </div>
+        Split Bill Amount: <input id="split_ans" type="text" style="color: green; font-size: larger;">
+
+    </div>
+
+    <div class="section">
+        <h3 class="que-title">Vacation Planner</h3>
+        <p class="que">A travel agency is planning vacations based on customer preferences. Write a Power Platform
+            Implementation Function that recommends destinations based on the following conditions:</p>
+        <ul>
+            <li>
+                If the customer prefers a beach vacation:
+                <ul>
+                    <li>Recommend destinations like "Maldives", "Bahamas" or "Hawaii"</li>
+                </ul>
+            </li>
+            <li>
+                If the customer prefers a mountain vacation:
+                <ul>
+                    <li>Recommend destinations like "Switzerland", "Colorado" or "Nepal"</li>
+                </ul>
+            </li>
+            <li>
+                If the customer prefers a historical vacation:
+                <ul>
+                    <li>Recommend destinations like "Rome", "Athens" or "Cario"</li>
+                </ul>
+            </li>
+            <li>
+                If the customer preference doesn't match any of the above,recommend a general destination like "Paris".
+            </li>
+        </ul>
+        <hr>
+        <input id="beach" type="radio" name="group1" />
+        <label>beach</label>
+
+        <input id="mountain" type="radio" name="group1" />
+        <label>mountain</label>
+
+        <input id="historical" type="radio" name="group1" />
+        <label>historical</label>
+
+        <div>
+            <button onclick="vacation()" class="btn">Plan Vacation</button>
+        </div>
+        <p id="plan" style="color: green; font-size: larger;"></p>
+    </div>
+
+    <div class="section">
+        <h3 class="que-title">Job Application Screening</h3>
+        <p class="que">A company is screening job applications. Write Power Platform Implementation Function that
+            evaluates candidates based on their qualifications and experience:</p>
+
+        <ul>
+            <li>Candidates are evaluated based on their degree (Bachelor's, Master's, Ph.D.) and years of relevant
+                experience.</li>
+            <li>Use nested conditions to prioritize candidates:
+                <ul>
+                    <li>Prefer candidates with a Ph.D. and at least 5 years of experience.</li>
+                    <li>If no Ph.D. candidates, prefer Master's with at least 3 years of experience.</li>
+                    <li>If no Master's candidates, accept bachelor's with at least 2 years of experience.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr>
+        <p class="field-label">Enter qualification</p>
+        <input id="qualification" type="text" />
+
+        <p class="field-label">Enter experience</p>
+        <input id="experience" type="text" />
+
+        <div>
+            <button onclick="jobApplicationScreening()" class="btn">Apply for Job</button>
+        </div>
+        <p id="job" style="color: green; font-size: larger;"></p>
+
+    </div>
+
+
+    <script>
+
+        function proceed_in_room() {
+            let roomtype = document.getElementsByClassName("roomtype")[0].value.toLowerCase();
+            let code = document.getElementsByClassName("code")[0].value;
+
+            // Get the answer element
+            let ans = document.getElementById("ans");
+
+            // Check conditions and update the ans element's text
+            if ((roomtype === "library" && code === "2468") ||
+                (roomtype === "dungeon" && code === "7531") ||
+                (code === "0000")) {
+                ans.innerHTML = "proceed";
+            } else {
+                ans.innerHTML = "can't proceed";
+            }
+        }
+
+        function splitBill() {
+            let bill_input = parseFloat(document.getElementById("bill_input").value)
+            let persons_input = Number(document.getElementById("persons_input").value)
+
+            let tax = bill_input * 0.08
+            let billWithTax = bill_input + tax
+            let tip_percent;
+
+            if (billWithTax < 50) {
+                tip_percent = 0.15
+            }
+            else if (billWithTax <= 100) {
+                tip_percent = 0.20
+            }
+            else {
+                tip_percent = 0.25
+            }
+
+            let total = billWithTax + (billWithTax * tip_percent)
+            let ans = total / persons_input
+
+            document.getElementById("split_ans").value = ans;
+
+        }
+
+
+
+        function vacation() {
+            let choice;
+            if (document.getElementById("beach").checked)
+                choice = "beach"
+            else if (document.getElementById("mountain").checked)
+                choice = "mountain"
+            if (document.getElementById("historical").checked)
+                choice = "historical"
+
+            if (choice == "beach")
+                document.getElementById("plan").innerHTML = "Destinations will be Maldives, Bahamas, or Hawaii."
+            else if (choice == "mountain")
+                document.getElementById("plan").innerHTML = "Destinations will be Switzerland, Colorado, or Nepal."
+            else if (choice == "historical")
+                document.getElementById("plan").innerHTML = "Destinations will be Rome, Athens, or Cairo."
+            else 
+                document.getElementById("plan").innerHTML =  "Destinations will be Paris."
+        }
+
+        function jobApplicationScreening(){
+            let qualification = document.getElementById("qualification").value.toLowerCase()
+            let experience = Number(document.getElementById("experience").value)
+
+            if(qualification==="phd" && experience>=5)
+                document.getElementById("job").innerHTML = "Candidate accepted: Ph.D. with sufficient experience."
+            else if(qualification==="master" && experience>=3)
+                document.getElementById("job").innerHTML = "Candidate accepted: Masters with sufficient experience."
+            else if(qualification==="bachelor" && experience>=2)
+                document.getElementById("job").innerHTML = "Candidate accepted: Bachelor with sufficient experience."
+            else
+                document.getElementById("job").innerHTML = "Candidate not accepted: no sufficient experience."   
+            
+        }
+    </script>
+</body>
+
+</html>

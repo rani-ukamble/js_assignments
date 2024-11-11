@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* Styling the input field for better visibility */
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        /* Adding a border change when focused */
+        input:focus {
+            border-color: #4CAF50; /* Green border on focus */
+            background-color: yellow !important; /* Enforce background color change */
+        }
+    </style>
+</head>
+<body>
+    <input id="inc" type="text" placeholder="Enter char" onkeypress="increaseCnt()">
+    <p id="para"></p>
+
+    <input type="text" id="upper" placeholder="Enter" onkeyup="upperCaseConvert()">
+    <p id="para1"></p>
+
+    <!-- Input field with focus and blur event -->
+    <input type="text" id="ip" onfocus="focus(this)" onblur="blur(this)" placeholder="Click to focus">
+
+
+    <script>
+        let p = 0;
+
+        // Function to increase the count when a key is pressed
+        function increaseCnt() {
+            p = p + 1;
+            document.getElementById("para").textContent = p;
+        }
+
+        // Function to convert text to uppercase as the user types
+        function upperCaseConvert() {
+            document.getElementById("para1").textContent = document.getElementById("upper").value.toUpperCase();
+        }
+
+        // Function to change background color to yellow when input is focused
+        function focus(ele) {
+            ele.style.backgroundColor = "yellow";
+        }
+
+        // Function to reset background color back to white when input loses focus
+        function blur(ele) {
+            ele.style.backgroundColor = "white";
+        }
+    </script>
+</body>
+</html>

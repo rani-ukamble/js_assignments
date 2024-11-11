@@ -1,0 +1,78 @@
+.btn-group
+{
+    padding:10px;
+}
+
+.btn-group button{
+    padding:10px;
+    margin:10px;
+    width:200px;
+    font:bold 20px 'arial';
+    border:none;
+    box-shadow: 2px 2px 4px grey;
+}
+
+.btn-group button:hover{
+    box-shadow: 2px 2px 6px grey;
+    cursor: pointer;
+}
+
+.section{
+    border:3px solid darkred;
+    padding:10px;
+    margin:25px 100px 25px 100px;
+    box-shadow: 3px 3px 5px grey;
+}
+
+
+.form-field{
+    font:normal 20px 'calibri';
+}
+
+.w-4{
+    width:40%;
+}
+
+.w-2{
+    width:20%;
+}
+
+.text-center{
+    text-align: center;
+}
+
+
+.que-title{
+    background-color: darkred;
+    color:white;
+    padding:8px;
+    margin:0px;
+}
+
+.que{
+    color:darkslategrey;
+    font:normal 16px 'ubuntu';
+    padding:8px;
+    margin:0px;
+}
+
+.field-label{
+    color:darkred;
+    margin:2px 0px 2px 0px;
+    font:bold 12px 'arial';
+}
+
+.btn{
+    padding:10px;
+    margin:5px 0px 5px 0px;
+    font:bold 14px 'arial';
+    border:none;
+    box-shadow: 2px 2px 4px grey;
+    background-color: darkred;
+    color:white;
+}
+
+.btn:hover{
+    box-shadow: 2px 2px 6px grey;
+    cursor: pointer;
+}
